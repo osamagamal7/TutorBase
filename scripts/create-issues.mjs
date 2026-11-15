@@ -63,16 +63,43 @@ if (!create) {
   process.exit(0);
 }
 
-const gh = (...a) => execFileSync("gh", a, { encoding: "utf8", stdio: ["pipe", "pipe", "inherit"] });
+// The Tutorbase project auto-adds new repo issues. `gh issue create --project` then
+// tries to add the same issue again and exits with "Content already exists in this project"
+// even though the issue was created. Treat that as success, and skip titles that already exist
+// so a re-run does not open duplicates.
+const gh = (args, { projectDuplicateOk = false } = {}) => {
+  try {
+    return execFileSync("gh", args, { encoding: "utf8" });
+  } catch (error) {
+    const stderr = `${error.stderr ?? ""}`;
+    const stdout = `${error.stdout ?? ""}`;
+    if (projectDuplicateOk && stderr.includes("Content already exists in this project")) {
+      return stdout;
+    }
+    if (stderr) process.stderr.write(stderr.endsWith("\n") ? stderr : `${stderr}\n`);
+    throw error;
+  }
+};
 
 const allLabels = new Set(tickets.flatMap(labelsFor));
-for (const label of allLabels) gh("label", "create", label, "--force");
+for (const label of allLabels) gh(["label", "create", label, "--force"]);
+
+const existing = new Map(
+  JSON.parse(gh(["issue", "list", "--state", "all", "--limit", "200", "--json", "title,url"])).map(
+    (issue) => [issue.title, issue.url],
+  ),
+);
 
 for (const t of tickets) {
-  const ghArgs = ["issue", "create", "--title", `${t.id} · ${t.title}`, "--body", t.body];
+  const title = `${t.id} · ${t.title}`;
+  if (existing.has(title)) {
+    console.log(`${t.id} → ${existing.get(title)} (already exists)`);
+    continue;
+  }
+  const ghArgs = ["issue", "create", "--title", title, "--body", t.body];
   for (const label of labelsFor(t)) ghArgs.push("--label", label);
   for (const user of assigneesFor(t)) ghArgs.push("--assignee", user);
   if (project) ghArgs.push("--project", project);
-  const url = gh(...ghArgs).trim();
+  const url = gh(ghArgs, { projectDuplicateOk: Boolean(project) }).trim();
   console.log(`${t.id} → ${url}`);
 }
