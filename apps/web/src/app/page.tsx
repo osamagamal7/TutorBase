@@ -1,7 +1,27 @@
 import Image from "next/image";
-import { UserSchema } from "@TutorBase/shared"; 
+import { UserSchema } from "@tutorbase/shared"; 
 
 export default function Home() {
+
+
+  const googobject = {
+    id:"1",
+    email: "myemail@mmm.com",
+    name: "my name"
+  }
+  
+  const result = UserSchema.safeParse(googobject)
+  console.log(result)
+
+  const badobject = {
+    id:1,
+    email: "myemail",
+    name: "my name"
+  }
+  
+  const result2 = UserSchema.safeParse(badobject)
+  console.log(result2)
+
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">

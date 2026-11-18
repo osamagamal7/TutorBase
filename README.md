@@ -4,6 +4,17 @@ Tutorbase is a web platform for independent tutors and small schools. Tutors pub
 
 The product rules, data model, and API are in [`docs/PROJECT-SPEC.md`](docs/PROJECT-SPEC.md). Screen layouts are in the [wireframes](https://cursor.com/canvas/store-313d95f8-a359-408f-b7f5-88523446e4f6/52a8c66e-bc0f-4c11-93e5-5fca28bde28b).
 
+## Run
+
+Use the Node version in `.nvmrc`, then from the repository root:
+
+```bash
+pnpm install
+pnpm dev
+```
+
+`pnpm dev` starts the Next.js app at http://localhost:4100 and the API at http://localhost:4200/api/v1.
+
 ## Users
 
 | Role | What they can do | How they get the role |
