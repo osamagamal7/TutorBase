@@ -16,7 +16,6 @@
     "lint": "echo \"no lint yet\"",
     "test": "echo \"no tests yet\""
   },
-
   "dependencies": {
     "zod": "^4.6.7"
   },

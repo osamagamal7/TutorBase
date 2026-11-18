@@ -1,19 +1,28 @@
 {
   "name": "tutorbase",
   "private": true,
-
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
     "test": "turbo test",
     "lint": "turbo lint",
-    "typecheck": "turbo typecheck"
+    "typecheck": "turbo typecheck",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky"
   },
   "engines": {
     "node": ">=24.14.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^21.2.4",
+    "@commitlint/config-conventional": "^21.2.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.1",
+    "prettier": "^3.10.1",
     "turbo": "latest"
   },
   "packageManager": "pnpm@12.21.0"
