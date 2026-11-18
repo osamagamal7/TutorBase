@@ -1,26 +1,24 @@
-import Image from "next/image";
-import { UserSchema } from "@tutorbase/shared"; 
+import Image from 'next/image';
+import { UserSchema } from '@tutorbase/shared';
 
 export default function Home() {
-
-
   const googobject = {
-    id:"1",
-    email: "myemail@mmm.com",
-    name: "my name"
-  }
-  
-  const result = UserSchema.safeParse(googobject)
-  console.log(result)
+    id: '1',
+    email: 'myemail@mmm.com',
+    name: 'my name',
+  };
+
+  const result = UserSchema.safeParse(googobject);
+  console.log(result);
 
   const badobject = {
-    id:1,
-    email: "myemail",
-    name: "my name"
-  }
-  
-  const result2 = UserSchema.safeParse(badobject)
-  console.log(result2)
+    id: 1,
+    email: 'myemail',
+    name: 'my name',
+  };
+
+  const result2 = UserSchema.safeParse(badobject);
+  console.log(result2);
 
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
@@ -35,27 +33,27 @@ export default function Home() {
         />
         <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
           <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
+            To get started, edit the{' '}
             <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
               page.tsx
-            </code>{" "}
+            </code>{' '}
             file.
           </h1>
           <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
+            Looking for a starting point or more instructions? Head over to{' '}
             <a
               href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
               className="font-medium text-zinc-950 dark:text-zinc-50"
             >
               Templates
-            </a>{" "}
-            or the{" "}
+            </a>{' '}
+            or the{' '}
             <a
               href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
               className="font-medium text-zinc-950 dark:text-zinc-50"
             >
               Learning
-            </a>{" "}
+            </a>{' '}
             center.
           </p>
         </div>

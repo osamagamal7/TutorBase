@@ -1,19 +1,23 @@
 {
   "name": "tutorbase",
   "private": true,
-
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
     "test": "turbo test",
     "lint": "turbo lint",
-    "typecheck": "turbo typecheck"
+    "typecheck": "turbo typecheck",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "engines": {
     "node": ">=24.14.0"
   },
   "devDependencies": {
+    "prettier": "^3.10.1",
     "turbo": "latest"
   },
   "packageManager": "pnpm@12.21.0"

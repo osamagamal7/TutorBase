@@ -1,15 +1,10 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service.js';
-import { UserSchema } from '@tutorbase/shared'; 
-
-
-
+import { UserSchema } from '@tutorbase/shared';
 
 @Controller()
 export class AppController {
-
-  constructor(private readonly appService: AppService) {
-  }
+  constructor(private readonly appService: AppService) {}
 
   @Get()
   getHello(): string {
