@@ -1,0 +1,20 @@
+{
+  "name": "tutorbase",
+  "private": true,
+
+  "workspaces": ["packages/*"],
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "test": "turbo test",
+    "lint": "turbo lint",
+    "typecheck": "turbo typecheck"
+  },
+  "engines": {
+    "node": ">=24.14.0"
+  },
+  "devDependencies": {
+    "turbo": "latest"
+  },
+  "packageManager": "pnpm@12.21.0"
+}
