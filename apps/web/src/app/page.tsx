@@ -8,14 +8,17 @@ export default function Home() {
     name: 'my name',
   };
 
-  const result = UserSchema.safeParse(googobject);
-  console.log(result);
-
   const badobject = {
     id: 1,
     email: 'myemail',
     name: 'my name',
   };
+
+  const printNum = (num: number) => {
+    console.log(num);
+  };
+
+  printNum('123');
 
   const result2 = UserSchema.safeParse(badobject);
   console.log(result2);
