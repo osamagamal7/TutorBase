@@ -3,7 +3,9 @@ import path from 'node:path';
 const root = process.cwd();
 
 function rel(files, dir) {
-  return files.map((file) => path.relative(path.join(root, dir), file)).join(' ');
+  return files
+    .map((file) => path.relative(path.join(root, dir), file))
+    .join(' ');
 }
 
 export default {
