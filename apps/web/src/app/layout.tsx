@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono, Outfit, Public_Sans } from 'next/font/google';
 import './globals.css';
+import { QueryProvider } from '@/components/query-provider';
 import { cn } from '@/lib/utils';
 
 const publicSansHeading = Public_Sans({
@@ -40,7 +41,9 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
         publicSansHeading.variable,
       )}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <QueryProvider>{children}</QueryProvider>
+      </body>
     </html>
   );
 }
